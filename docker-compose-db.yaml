@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: postgres
+    networks:
+      - bridge-db
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    env_file:
+    - db/.env
+
+networks:
+  bridge-db:
+    name: db-network
+    external: true
+
+volumes:
+  pgdata:

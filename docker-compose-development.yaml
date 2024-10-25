@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  backend:
+    container_name: backend-api-dev
+    image: backend-api-dev:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile.development
+    ports:
+      - 3000:3000
+    expose:
+      - "3306"
+    networks:
+      - bridge-db
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+    mem_limit: 2g
+
+networks:
+  bridge-db:
+    name: db-network
+    external: true

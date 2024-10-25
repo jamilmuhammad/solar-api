@@ -1,0 +1,1 @@
+export const USER_EMAIL_UNIQUE_INDEX = 'user_email_unique_index';
